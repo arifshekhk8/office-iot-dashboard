@@ -1,9 +1,9 @@
 # Office IoT Dashboard
 
 Smart office energy monitoring for a 3-room office that runs on Discord.
-18 simulated devices (6 fans, 9 lights) feed **one backend**, which powers a
-**live web dashboard** and a **Discord bot** — both thin clients of the same
-source of truth.
+15 simulated devices (6 fans + 9 lights, 5 per room) feed **one backend**,
+which powers a **live web dashboard** and a **Discord bot** — both thin
+clients of the same source of truth.
 
 > Techathon Nationals & Rover Summit (IUT Robotics Society) — preliminary
 > round submission.

@@ -1,0 +1,17 @@
+{
+  "name": "office-iot-dashboard",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Smart office energy monitoring: one backend, live dashboard + Discord bot",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:backend": "npm run dev --workspace apps/backend",
+    "dev:dashboard": "npm run dev --workspace apps/dashboard",
+    "dev:bot": "npm run dev --workspace apps/bot",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present"
+  }
+}

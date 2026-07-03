@@ -1,6 +1,6 @@
 # PLAN — Office IoT Dashboard (Techathon Nationals & Rover Summit)
 
-Smart office energy monitoring: 18 simulated devices (6 fans, 9 lights across 3
+Smart office energy monitoring: 15 simulated devices (6 fans, 9 lights across 3
 rooms) → one backend → live web dashboard + Discord bot.
 
 ## Architecture decision record
@@ -38,7 +38,7 @@ rooms) → one backend → live web dashboard + Discord bot.
 ## Phases
 
 - [x] **Phase 0 — Setup (30m):** public repo, planning docs, stack finalized
-- [ ] **Phase 1 — Backend core (1.5h):** 18-device data model, simulator engine
+- [ ] **Phase 1 — Backend core (1.5h):** 15-device data model, simulator engine
       (office-hours-weighted, "forgot to turn off" scenarios), REST API,
       Socket.IO push, shared alert rules
 - [ ] **Phase 2 — Web dashboard (2h):** live device status panel (grouped by
@@ -64,3 +64,4 @@ rooms) → one backend → live web dashboard + Discord bot.
 - 2026-07-04 02:20 — Socket.IO over raw `ws` for automatic reconnection during a live judged demo.
 - 2026-07-04 02:20 — Simulator tick every 5s so state changes are visible within one breath during the demo.
 - 2026-07-04 02:20 — Simulated clock runs alongside real clock: the API exposes the sim's "office time" so alert conditions (outside 9–5, >2h all-on) can be demonstrated live instead of waiting for wall-clock evening.
+- 2026-07-04 02:50 — Device count is **15**, not 18. The problem statement says both "5 devices per room, 15 devices total" and later "all 18 devices"; the room composition it fixes (2 fans + 3 lights × 3 rooms = 15, and its own "6 fans, 9 lights") makes 15 the only consistent reading. Going with 15.
