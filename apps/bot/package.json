@@ -9,7 +9,6 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.110.0",
     "@office/shared": "*",
     "discord.js": "^14.26.4",
     "dotenv": "^16.5.0",

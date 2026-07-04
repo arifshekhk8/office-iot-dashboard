@@ -1,14 +1,15 @@
 # State
-Last updated: 2026-07-04T16:13:00+06:00
-Hours remaining at last update: ~1.8 (deadline 18:00 Asia/Dhaka today)
+Last updated: 2026-07-04T16:38:00+06:00
+Hours remaining at last update: ~1.4 (deadline 18:00 Asia/Dhaka today)
 
 ## Current phase
-COMPLETE (build side) — Discord bot fully live with real credentials, two
-more real bugs found + fixed via live testing in the human's actual Discord
-server, and the Wokwi hardware checkpoint self-verified via browser
-automation (build succeeded, simulation ran). Only the demo video recording
-remains, and that one is genuinely human-only (no screen-recording tool
-available in this session).
+COMPLETE (build side) — Discord bot fully live with real credentials AND now
+genuinely LLM-humanized via Groq (human's own choice of provider, logged
+deviation from the brief's Anthropic recommendation). Several more real bugs
+found + fixed via live testing in the human's actual Discord server, and the
+Wokwi hardware checkpoint self-verified via browser automation. Only the
+demo video recording remains, and that one is genuinely human-only (no
+screen-recording tool available in this session).
 
 ## Done
 - Phase 0: public repo (github.com/arifshekhk8/office-iot-dashboard), planning
@@ -103,6 +104,24 @@ available in this session).
   `baseUrl` variable, zero setup beyond importing. Verified every request in
   it with a matching live curl call first (all 13 returned 200). Linked from
   README. See PLAN.md 2026-07-04 16:13.
+- Bot now genuinely LLM-humanized via Groq (human's own key, `console.groq.com`
+  — not xAI's Grok, an easy name mix-up caught via the key's `gsk_` prefix).
+  `apps/bot/src/humanize.ts` calls Groq's OpenAI-compatible chat-completions
+  endpoint directly via fetch (`llama-3.3-70b-versatile`, confirmed available
+  to this key via `GET /v1/models`), no new dependency. Removed the now-unused
+  `@anthropic-ai/sdk`. Along the way found and fixed a real module-load-order
+  bug: `humanize.ts` and `backend.ts` both read `process.env` at module top
+  level, but they're imported before `index.ts`'s own dotenv `config()` call
+  runs, so the reads permanently captured `undefined` regardless of `.env`.
+  Fixed by moving both reads inside their functions (lazy, per-call). Also
+  hit the same duplicate-process issue as 16:02 in a new form: `kill -9` on a
+  `tsx watch` supervisor doesn't kill its already-running child, so a stale
+  orphaned bot (running pre-fix code) kept answering alongside the new one.
+  Fixed by killing supervisor+child pairs together, verified by cwd. Verified
+  live end-to-end after all fixes: `!status`/`!usage` return genuinely
+  LLM-phrased prose ("Hey boss, just a quick update...") with precise,
+  non-rounded numbers matching real backend state, not template text. See
+  PLAN.md 2026-07-04 16:38 for the full chain of events.
 - Backend + dashboard + bot are currently running live and process-clean:
   exactly one instance each, confirmed via `lsof cwd` on every tsx process.
 
@@ -120,8 +139,10 @@ Nothing build-related. Only the demo video recording remains.
 
 (Discord bot token checkpoint is DONE — human obtained a real token, enabled
 Message Content Intent, invited the bot, and set an alert channel ID, all in
-this session. ANTHROPIC_API_KEY is still optional/unset; bot correctly runs
-on the deterministic template fallback without it. Wokwi checkpoint is DONE
+this session. GROQ_API_KEY is now set and confirmed working — bot is
+genuinely LLM-humanized, not running on the template fallback (though that
+fallback still exists and still reads naturally if the key is ever removed).
+Wokwi checkpoint is DONE
 per above — if you want to see it with your own eyes / watch the Serial
 Monitor yourself, the project is easy to reopen: wokwi.com -> New Project ->
 ESP32 -> paste the two files per docs/HARDWARE.md, exactly as documented.)

@@ -48,10 +48,12 @@ connect and (optionally) speak in nicer prose:
    without it). Then *OAuth2 → URL Generator* → scope `bot` → permissions
    `Send Messages`, `Read Message History`, `View Channel` → open the
    generated URL and invite the bot to a server you control.
-2. **`ANTHROPIC_API_KEY` (optional):** [console.anthropic.com](https://console.anthropic.com)
-   → API Keys → Create Key. Without it the bot replies with clean,
-   deterministic template text instead of LLM-phrased prose — it never goes
-   silent either way.
+2. **`GROQ_API_KEY` (optional):** [console.groq.com](https://console.groq.com)
+   → API Keys → Create Key. (Groq, the inference platform — not xAI's Grok
+   model; the names are an easy mix-up.) Without it the bot replies with
+   clean, friendly template text instead of LLM-phrased prose — it never goes
+   silent either way, and the template itself already reads conversationally,
+   not as a data dump.
 3. **`DISCORD_ALERT_CHANNEL_ID` (optional):** right-click a channel in
    Discord (Developer Mode on) → Copy Channel ID. Enables proactive alert
    posts; without it the bot just skips that feature.
