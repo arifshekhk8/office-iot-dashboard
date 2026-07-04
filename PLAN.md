@@ -58,11 +58,19 @@ rooms) → one backend → live web dashboard + Discord bot.
       (+ PNG render); Wokwi project (`diagram.json` + firmware + `wokwi.toml`)
       with pin-mapping doc. All Wokwi part ids and pin names cross-checked
       against live GitHub projects before committing.
-- [ ] **Phase 6 — Full verification (1.5h):** cold-start from README only,
-      walk the rubric live, fix properly, re-run the whole checklist until one
-      pass is clean
-- [ ] **Phase 7 — Polish + handoff (1h):** README finalized, demo script,
-      human checkpoints flagged
+- [x] **Phase 6 — Full verification (1.5h):** killed every dev process
+      (found and cleaned up duplicate zombie backends from earlier restarts
+      in the process), cold-started backend/dashboard/bot from README
+      commands only, walked the rubric live: power math verified by hand,
+      both alert rules triggered live via the demo-scenario endpoints and
+      confirmed correct, toggle round-trip re-verified, bot commands
+      re-verified against a fresh backend, secrets-in-history check clean,
+      commit authorship confirmed (no AI co-author trailers, matching the
+      brief's explicit override of the default convention).
+- [x] **Phase 7 — Polish + handoff (1h):** README rewritten with real
+      instructions/screenshots/architecture notes, `docs/DEMO_SCRIPT.md`
+      written around the demo-scenario endpoints, human checkpoints
+      documented in STATE.md.
 - [ ] **Buffer:** regressions, stretch polish, human records video
 
 ## Decisions log
@@ -75,3 +83,4 @@ rooms) → one backend → live web dashboard + Discord bot.
 - 2026-07-04 07:18 — A background workflow building the Wokwi hardware sim, the system diagram, and the OfficeMap component hit a session limit mid-run and never returned final summaries. The hardware and OfficeMap *files* it wrote were still on disk and turned out to be high quality — verified them independently (Wokwi part ids/pins cross-checked against real GitHub projects; OfficeMap fixed under strict typecheck) rather than redoing the work from scratch. The system diagram genuinely wasn't written (empty dir) and was built fresh.
 - 2026-07-04 07:35 — Room accent color for Work Room 2 changed from emerald to sky blue in the dashboard: emerald is already the semantic "on / live / push" color elsewhere (device ON badge, connection dot, legend), so reusing it as a room color would read as two different signals sharing one color.
 - 2026-07-04 07:40 — Dropped TS project references (`tsc -b`) in the dashboard in favor of a single `tsc --noEmit` — project references buy incremental-build speed that a 4-package hackathon repo doesn't need, and `-b` mode's composite-project rules were fighting the vite.config.ts node context for no real benefit.
+- 2026-07-04 07:50 — During Phase 6 cold-start, found 3 duplicate zombie backend processes left over from earlier `pkill`/port-kill attempts (npm's wrapper spawns a nested process tree that a single port-kill doesn't fully reach, and `tsx watch`'s supervisor outlives its child exiting). Hard-killed everything by matching the project's absolute path and verified zero processes + free ports before restarting, rather than trusting the first kill attempt.
