@@ -30,7 +30,8 @@ npm run dev:bot        # Discord bot — needs DISCORD_BOT_TOKEN in .env, see be
 ```
 
 Open **http://localhost:5173** for the dashboard. The backend seeds all 15
-devices off and starts a simulated office day at 08:30 (see `.env.example` —
+devices off and starts a simulated office day at 09:00 — office-hours open,
+so a fresh start shows a clean "no active alerts" state (see `.env.example` —
 `SIM_START_TIME`), running 60× real time so a few minutes of wall-clock
 time covers a full office day, including after-hours and early-morning
 behavior.

@@ -22,7 +22,7 @@ import { InMemoryDeviceRepository } from './store';
 config({ path: resolve(dirname(fileURLToPath(import.meta.url)), '../../../.env') });
 
 const PORT = Number(process.env.PORT ?? 4000);
-const clock = new SimClock(process.env.SIM_START_TIME ?? '08:30', Number(process.env.SIM_TIME_SCALE ?? 60));
+const clock = new SimClock(process.env.SIM_START_TIME ?? '09:00', Number(process.env.SIM_TIME_SCALE ?? 60));
 
 const store = new InMemoryDeviceRepository(buildDeviceCatalog(clock.now().toISOString()));
 const tracker = new AlertTracker();

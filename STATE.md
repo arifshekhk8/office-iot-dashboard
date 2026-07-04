@@ -1,14 +1,16 @@
 # State
-Last updated: 2026-07-04T14:18:00+06:00
-Hours remaining at last update: ~3.7 (deadline 18:00 Asia/Dhaka today)
+Last updated: 2026-07-04T14:54:00+06:00
+Hours remaining at last update: ~3.1 (deadline 18:00 Asia/Dhaka today)
 
 ## Current phase
-COMPLETE (build side) — and the Discord bot is now fully live with real
-credentials. Everything in Section 5's phase plan is done, committed, and
-pushed. Human completed checkpoint 1 (Discord token) live in this session;
-doing so surfaced and let us fix a real bug (see Known issues). Two human
-checkpoints remain (Wokwi import click-through, demo video) — neither blocks
-the build, and the repo is judge-ready as-is right now.
+COMPLETE (build side) — Discord bot fully live with real credentials, and two
+more real bugs found + fixed via live testing with the human in their actual
+Discord server (see Known issues). Browser automation (Claude-in-Chrome) is
+available in this session and was used to verify the bot directly through
+the real Discord web client, not just via the human's screenshots — updating
+the earlier assumption that no browser tool existed for this. One human
+checkpoint remains (demo video) plus Wokwi import, which will be attempted
+directly next now that browser automation is confirmed working.
 
 ## Done
 - Phase 0: public repo (github.com/arifshekhk8/office-iot-dashboard), planning
@@ -54,8 +56,16 @@ the build, and the repo is judge-ready as-is right now.
 - All 9 commits pushed; `git log` is the durable backup, not this file.
 - Backend + dashboard + bot are all currently running live at localhost:4000 /
   localhost:5173, and the bot is logged into Discord for real (real token,
-  real alert channel configured) — confirmed via its own startup log
-  (`[bot] logged in as ...`, `[bot] alert feed connected to ...`).
+  real alert channel configured) — confirmed via its own startup log AND
+  live in the human's real Discord server via browser automation: `!status`
+  returned "Total power draw: 360W. No active alerts." on a fresh restart.
+- Proactive alerts now batch: alerts landing within a 6s window post as one
+  consolidated Discord message instead of one message per device (bot-side
+  only; backend/dashboard event granularity untouched).
+- `SIM_START_TIME` default changed 08:30 -> 09:00 (office-hours open) so a
+  fresh restart never shows a false-looking after-hours alert for a device
+  that legitimately turned on during the pre-9am morning ramp-up. See
+  PLAN.md decisions log (2026-07-04 14:55) for full detail on both fixes.
 
 ## In progress
 - Nothing — clean stopping point, all build work complete.
@@ -66,12 +76,14 @@ Nothing build-related. Only the two human checkpoints below remain.
 ## Blocked / needs human
 1. **Wokwi import confirmation** — `docs/HARDWARE.md` has 3-step judge
    instructions (open wokwi.com -> New Project -> ESP32 -> paste
-   diagram.json + sketch.ino -> Play). No browser-automation tool available
-   for this from here; someone needs to actually click through it once to
-   confirm it renders as expected.
+   diagram.json + sketch.ino -> Play). Browser automation is now confirmed
+   working in this session (just used it against Discord) — attempting this
+   directly next rather than leaving it human-only. Will update this entry
+   with the outcome.
 2. **Demo video recording** — `docs/DEMO_SCRIPT.md` is written and ready;
    someone needs to actually record following it (any screen recorder,
-   <=3 min per the rubric).
+   <=3 min per the rubric). This one stays human — no screen-recording tool
+   available in this session.
 
 (Discord bot token checkpoint is DONE — human obtained a real token, enabled
 Message Content Intent, invited the bot, and set an alert channel ID, all in
@@ -79,8 +91,14 @@ this session. ANTHROPIC_API_KEY is still optional/unset; bot correctly runs
 on the deterministic template fallback without it.)
 
 ## Known issues
-- None currently open. Previously: a real bug was found and fixed this
-  session — `apps/backend/src/index.ts` and `apps/bot/src/index.ts` both
+- None currently open. Previously (this session, all fixed and verified live):
+  1. Proactive alerts posted one Discord message per device; now batched into
+     one message per 6s window (bot-side only). See PLAN.md 2026-07-04 14:55.
+  2. `SIM_START_TIME` defaulted to 08:30, 30min before the 9:00 alert-rule
+     boundary, so legitimate early-arrival devices looked like false alerts
+     for the first ~30s after every restart. Default changed to 09:00. Same
+     PLAN.md entry has full detail.
+  3. `apps/backend/src/index.ts` and `apps/bot/src/index.ts` both
   loaded `.env` via bare `import 'dotenv/config'`, which resolves relative to
   `process.cwd()`. Since `npm run dev --workspace <app>` sets cwd to that
   app's own directory (confirmed with `npm exec --workspace apps/bot -c
