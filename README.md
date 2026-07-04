@@ -132,7 +132,6 @@ hardware/         Wokwi circuit simulation (ESP32 + relays + current sense)
 - API testing: [`docs/postman_collection.json`](docs/postman_collection.json) — import into Postman, every endpoint ready to send
 - Demo video: *(link pending)*
 - Original problem statement: [`docs/original-problem-statement.pdf`](docs/original-problem-statement.pdf)
-- Build plan and decisions log: [`PLAN.md`](PLAN.md)
 
 ## Architecture notes
 

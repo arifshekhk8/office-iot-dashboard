@@ -19,3 +19,6 @@ npm-debug.log*
 # editor
 .vscode/
 .idea/
+
+# internal dev notes — build plan, state log, original AI brief (not for judges)
+internal/

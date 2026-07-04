@@ -134,7 +134,7 @@
   <text x="660" y="624" text-anchor="middle" font-size="11.5" font-weight="700" fill="#92400e">NOTE — alert rules live once, in @office/shared</text>
   <text x="660" y="642" text-anchor="middle" font-size="10.6" fill="#b45309">evaluated ONLY by the backend; dashboard &amp; bot just render its output</text>
 
-  <!-- ================= COLUMN 3 — DASHBOARD / BOT / ANTHROPIC ================= -->
+  <!-- ================= COLUMN 3 — DASHBOARD / BOT / LLM ================= -->
   <g filter="url(#soft-shadow)">
     <rect x="1010" y="104" width="340" height="230" rx="12" fill="#ffffff" stroke="#10b981" stroke-width="1.6"/>
   </g>
@@ -165,7 +165,7 @@
   <g filter="url(#soft-shadow)">
     <rect x="1050" y="650" width="260" height="60" rx="10" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1.2"/>
   </g>
-  <text x="1180" y="674" text-anchor="middle" font-size="11.3" font-weight="700" fill="#6d28d9" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">Anthropic API · claude-haiku-4-5</text>
+  <text x="1180" y="674" text-anchor="middle" font-size="11.3" font-weight="700" fill="#6d28d9" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">Groq API · llama-3.3-70b</text>
   <text x="1180" y="692" text-anchor="middle" font-size="10" fill="#7c3aed">phrasing only · template fallback if unavailable</text>
   <line x1="1180" y1="610" x2="1180" y2="650" stroke="#8b5cf6" stroke-width="2" marker-start="url(#arrow-violet)" marker-end="url(#arrow-violet)"/>
 
