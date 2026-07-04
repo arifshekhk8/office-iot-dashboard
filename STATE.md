@@ -1,6 +1,6 @@
 # State
-Last updated: 2026-07-04T16:02:00+06:00
-Hours remaining at last update: ~2.0 (deadline 18:00 Asia/Dhaka today)
+Last updated: 2026-07-04T16:13:00+06:00
+Hours remaining at last update: ~1.8 (deadline 18:00 Asia/Dhaka today)
 
 ## Current phase
 COMPLETE (build side) — Discord bot fully live with real credentials, two
@@ -97,6 +97,12 @@ available in this session).
   app via `lsof -p <pid> | grep cwd` and killing the exact stale PIDs —
   confirmed live afterward: exactly one reply per command again. See PLAN.md
   2026-07-04 16:02 for full detail.
+- Added `docs/postman_collection.json` so judges can test the REST API by
+  clicking instead of typing curl — every route in `api.ts` covered (health,
+  summary, devices, rooms, alerts, toggle, all 4 demo scenarios), one
+  `baseUrl` variable, zero setup beyond importing. Verified every request in
+  it with a matching live curl call first (all 13 returned 200). Linked from
+  README. See PLAN.md 2026-07-04 16:13.
 - Backend + dashboard + bot are currently running live and process-clean:
   exactly one instance each, confirmed via `lsof cwd` on every tsx process.
 

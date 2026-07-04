@@ -83,6 +83,14 @@ curl -X POST localhost:4000/api/demo/scenario -H 'content-type: application/json
 statement — a room still fully on well after hours — and trip both alert
 rules (after-hours, and all-on-for-over-2-hours) at once.
 
+### Testing the API yourself
+
+Prefer clicking over typing curl commands? Import
+[`docs/postman_collection.json`](docs/postman_collection.json) into Postman
+(File → Import) — every endpoint is in there (health, devices, rooms,
+alerts, toggle, the demo scenarios above) pre-filled and ready to send
+against `http://localhost:4000`, no setup beyond having the backend running.
+
 ## Repo layout
 
 ```
@@ -119,6 +127,7 @@ hardware/         Wokwi circuit simulation (ESP32 + relays + current sense)
   [`hardware/`](hardware/) — importable Wokwi project (ESP32, 5 relays, wall
   switches, current-sense stand-in) with a full pin-mapping table
 - Demo script: [`docs/DEMO_SCRIPT.md`](docs/DEMO_SCRIPT.md)
+- API testing: [`docs/postman_collection.json`](docs/postman_collection.json) — import into Postman, every endpoint ready to send
 - Demo video: *(link pending)*
 - Original problem statement: [`docs/original-problem-statement.pdf`](docs/original-problem-statement.pdf)
 - Build plan and decisions log: [`PLAN.md`](PLAN.md)

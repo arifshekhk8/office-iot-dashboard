@@ -1,0 +1,202 @@
+{
+  "info": {
+    "name": "Office IoT Dashboard API",
+    "description": "Every REST endpoint the backend exposes. Import this, make sure `npm run dev:backend` is running, and click Send on anything — no setup beyond that. Uses a collection variable `baseUrl` (default http://localhost:4000) so it works out of the box.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:4000", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Health & Summary",
+      "item": [
+        {
+          "name": "Health check",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "health"]
+            },
+            "description": "Sim clock status — confirms the backend is up and shows current sim time + speed."
+          }
+        },
+        {
+          "name": "Full summary (snapshot)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/summary",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "summary"]
+            },
+            "description": "Everything in one shot: all 15 devices, power totals, energy today, active alerts. Same shape the dashboard and bot both consume — this is the single source of truth."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Devices",
+      "item": [
+        {
+          "name": "List all devices",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/devices",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "devices"]
+            }
+          }
+        },
+        {
+          "name": "Get one device",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/devices/drawing-fan-1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "devices", "drawing-fan-1"]
+            },
+            "description": "Swap drawing-fan-1 for any device id — e.g. work1-light-2, work2-fan-1. Full id list is in GET /api/devices."
+          }
+        },
+        {
+          "name": "Toggle a device",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/api/devices/drawing-fan-1/toggle",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "devices", "drawing-fan-1", "toggle"]
+            },
+            "description": "Flips this device on/off — the exact same call the dashboard makes when you click a device. Watch the dashboard update live after sending this."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Rooms",
+      "item": [
+        {
+          "name": "List all rooms",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/rooms",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "rooms"]
+            }
+          }
+        },
+        {
+          "name": "Get one room",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/rooms/work1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "rooms", "work1"]
+            },
+            "description": "Room id can be drawing, work1, or work2 (also accepts lenient names like 'Work Room 1')."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Alerts",
+      "item": [
+        {
+          "name": "Active alerts",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/alerts",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "alerts"]
+            },
+            "description": "Whatever's currently active from the two alert rules (after-hours; a room fully on for 2+ hours). Likely empty right after a fresh restart during office hours — use the Demo Controls folder to trigger one on demand."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Demo Controls",
+      "description": "Force the simulator into an interesting state on command, instead of waiting for it to happen naturally. Safe to call repeatedly.",
+      "item": [
+        {
+          "name": "Scenario: forget a room (all on)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/api/demo/scenario",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "demo", "scenario"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"forget\",\"room\":\"work2\"}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Turns every device in the given room on and marks it 'forgotten' — pair with the jump scenario below to reproduce the exact 'forgot to turn off' case from the problem statement."
+          }
+        },
+        {
+          "name": "Scenario: jump the sim clock",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/api/demo/scenario",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "demo", "scenario"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"jump\",\"time\":\"17:30\"}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Jumps the simulated office clock straight to the given 24h HH:MM time. 17:30 is after hours, so anything left on immediately trips the after-hours alert."
+          }
+        },
+        {
+          "name": "Scenario: all devices on",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/api/demo/scenario",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "demo", "scenario"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"all-on\"}",
+              "options": { "raw": { "language": "json" } }
+            }
+          }
+        },
+        {
+          "name": "Scenario: all devices off",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/api/demo/scenario",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "demo", "scenario"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"all-off\"}",
+              "options": { "raw": { "language": "json" } }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
