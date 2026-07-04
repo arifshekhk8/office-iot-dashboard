@@ -46,10 +46,14 @@ rooms) → one backend → live web dashboard + Discord bot.
       push, zero manual refresh. Animated office map (Phase 4's bonus) landed
       here too since it's the dashboard's hero section — verified live in
       browser, full toggle round-trip confirmed working.
-- [ ] **Phase 3 — Discord bot (1.5h):** `!status` / `!room <name>` / `!usage`
-      against the real backend; LLM-humanized replies with template fallback
-- [ ] **Phase 4 — Bonus remainder (30m):** proactive Discord alert push
-      (animated office map already done in Phase 2)
+- [x] **Phase 3 — Discord bot (1.5h):** `!status` / `!room <name>` / `!usage`
+      against the real backend; LLM-humanized replies with template fallback.
+      Verified all 3 commands directly against the live backend (no Discord
+      token yet — human checkpoint). Proactive alert push (Phase 4's other
+      bonus item) built in the same pass since it shares the Socket.IO client.
+- [x] **Phase 4 — Bonus (both items done):** animated office map (Phase 2) +
+      proactive Discord alert push (Phase 3) — both built, both verified as
+      far as possible without human-provided credentials.
 - [x] **Phase 5 — Diagram + hardware (1h):** hand-authored SVG system diagram
       (+ PNG render); Wokwi project (`diagram.json` + firmware + `wokwi.toml`)
       with pin-mapping doc. All Wokwi part ids and pin names cross-checked
