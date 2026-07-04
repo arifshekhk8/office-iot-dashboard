@@ -1,16 +1,14 @@
 # State
-Last updated: 2026-07-04T14:54:00+06:00
-Hours remaining at last update: ~3.1 (deadline 18:00 Asia/Dhaka today)
+Last updated: 2026-07-04T15:11:00+06:00
+Hours remaining at last update: ~2.8 (deadline 18:00 Asia/Dhaka today)
 
 ## Current phase
-COMPLETE (build side) — Discord bot fully live with real credentials, and two
-more real bugs found + fixed via live testing with the human in their actual
-Discord server (see Known issues). Browser automation (Claude-in-Chrome) is
-available in this session and was used to verify the bot directly through
-the real Discord web client, not just via the human's screenshots — updating
-the earlier assumption that no browser tool existed for this. One human
-checkpoint remains (demo video) plus Wokwi import, which will be attempted
-directly next now that browser automation is confirmed working.
+COMPLETE (build side) — Discord bot fully live with real credentials, two
+more real bugs found + fixed via live testing in the human's actual Discord
+server, and the Wokwi hardware checkpoint self-verified via browser
+automation (build succeeded, simulation ran). Only the demo video recording
+remains, and that one is genuinely human-only (no screen-recording tool
+available in this session).
 
 ## Done
 - Phase 0: public repo (github.com/arifshekhk8/office-iot-dashboard), planning
@@ -66,21 +64,27 @@ directly next now that browser automation is confirmed working.
   fresh restart never shows a false-looking after-hours alert for a device
   that legitimately turned on during the pre-9am morning ramp-up. See
   PLAN.md decisions log (2026-07-04 14:55) for full detail on both fixes.
+- Wokwi hardware checkpoint self-verified via Claude-in-Chrome: opened a
+  fresh ESP32 project on wokwi.com, loaded `hardware/diagram.json` +
+  `hardware/sketch.ino` via Monaco's own `setValue()` API (clipboard paste
+  hung without a user gesture to authorize it), pressed Play. Result: circuit
+  rendered exactly matching the source, the sketch compiled successfully on
+  Wokwi's real build server, and the simulation ran continuously with
+  correct pin states (5x pull-up inputs for the switches, matching relay
+  outputs) and visible relay indicator lights. Did not manage to locate the
+  Serial Monitor panel to see the literal JSON telemetry text — noting that
+  honestly rather than overclaiming — but build success + a running
+  simulation is well beyond "confirm it renders," which is as far as the
+  original brief expected this checkpoint to go.
 
 ## In progress
 - Nothing — clean stopping point, all build work complete.
 
 ## Next up
-Nothing build-related. Only the two human checkpoints below remain.
+Nothing build-related. Only the demo video recording remains.
 
 ## Blocked / needs human
-1. **Wokwi import confirmation** — `docs/HARDWARE.md` has 3-step judge
-   instructions (open wokwi.com -> New Project -> ESP32 -> paste
-   diagram.json + sketch.ino -> Play). Browser automation is now confirmed
-   working in this session (just used it against Discord) — attempting this
-   directly next rather than leaving it human-only. Will update this entry
-   with the outcome.
-2. **Demo video recording** — `docs/DEMO_SCRIPT.md` is written and ready;
+1. **Demo video recording** — `docs/DEMO_SCRIPT.md` is written and ready;
    someone needs to actually record following it (any screen recorder,
    <=3 min per the rubric). This one stays human — no screen-recording tool
    available in this session.
@@ -88,7 +92,10 @@ Nothing build-related. Only the two human checkpoints below remain.
 (Discord bot token checkpoint is DONE — human obtained a real token, enabled
 Message Content Intent, invited the bot, and set an alert channel ID, all in
 this session. ANTHROPIC_API_KEY is still optional/unset; bot correctly runs
-on the deterministic template fallback without it.)
+on the deterministic template fallback without it. Wokwi checkpoint is DONE
+per above — if you want to see it with your own eyes / watch the Serial
+Monitor yourself, the project is easy to reopen: wokwi.com -> New Project ->
+ESP32 -> paste the two files per docs/HARDWARE.md, exactly as documented.)
 
 ## Known issues
 - None currently open. Previously (this session, all fixed and verified live):
