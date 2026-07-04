@@ -1,6 +1,6 @@
 # State
-Last updated: 2026-07-04T15:42:00+06:00
-Hours remaining at last update: ~2.3 (deadline 18:00 Asia/Dhaka today)
+Last updated: 2026-07-04T16:02:00+06:00
+Hours remaining at last update: ~2.0 (deadline 18:00 Asia/Dhaka today)
 
 ## Current phase
 COMPLETE (build side) — Discord bot fully live with real credentials, two
@@ -86,6 +86,19 @@ available in this session).
   now reads "Right now, Drawing Room has 1 fan and 2 lights on... — pulling
   300W total. No alerts right now, all good." — confirmed against real data
   for all 3 commands.
+- Added restrained friendly emoji to the same templates (🏢/📍/⚡/🔔 anchors,
+  🌀/💡 device icons, ✅/⚠️ alert indicator). Doing so surfaced a real
+  operational bug: every "bot-only restart" this session used a
+  `pkill -f ".../apps/bot"` pattern that never actually matched anything
+  (tsx watch's process args don't contain the app path — only its cwd does),
+  so each "restart" silently left the old bot instance running alongside the
+  new one. Two live bot instances with the same Discord token meant every
+  command got answered twice. Found and fixed by checking each PID's real
+  app via `lsof -p <pid> | grep cwd` and killing the exact stale PIDs —
+  confirmed live afterward: exactly one reply per command again. See PLAN.md
+  2026-07-04 16:02 for full detail.
+- Backend + dashboard + bot are currently running live and process-clean:
+  exactly one instance each, confirmed via `lsof cwd` on every tsx process.
 
 ## In progress
 - Nothing — clean stopping point, all build work complete.
