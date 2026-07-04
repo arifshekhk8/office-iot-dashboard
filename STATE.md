@@ -1,6 +1,6 @@
 # State
-Last updated: 2026-07-04T15:11:00+06:00
-Hours remaining at last update: ~2.8 (deadline 18:00 Asia/Dhaka today)
+Last updated: 2026-07-04T15:42:00+06:00
+Hours remaining at last update: ~2.3 (deadline 18:00 Asia/Dhaka today)
 
 ## Current phase
 COMPLETE (build side) — Discord bot fully live with real credentials, two
@@ -76,6 +76,16 @@ available in this session).
   honestly rather than overclaiming — but build success + a running
   simulation is well beyond "confirm it renders," which is as far as the
   original brief expected this checkpoint to go.
+- Bot's fallback phrasing rewritten to genuinely satisfy "humanized and
+  friendly — boss hates robotic data dumps." Human chose not to add an
+  ANTHROPIC_API_KEY (no-cost decision) and correctly flagged that the old
+  templates read as formatted data, not something a person would say. All
+  five templates in `apps/bot/src/templates.ts` rewritten into natural
+  sentences with proper list grammar; every number still sourced directly
+  from live snapshot/device data, nothing hardcoded. Verified live: `!status`
+  now reads "Right now, Drawing Room has 1 fan and 2 lights on... — pulling
+  300W total. No alerts right now, all good." — confirmed against real data
+  for all 3 commands.
 
 ## In progress
 - Nothing — clean stopping point, all build work complete.
