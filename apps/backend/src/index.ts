@@ -1,4 +1,6 @@
-import 'dotenv/config';
+import { config } from 'dotenv';
+import { fileURLToPath } from 'node:url';
+import { dirname, resolve } from 'node:path';
 import { createServer } from 'node:http';
 import cors from 'cors';
 import express from 'express';
@@ -16,6 +18,8 @@ import { AlertTracker } from './alertTracker';
 import { SimClock } from './clock';
 import { Simulator } from './simulator';
 import { InMemoryDeviceRepository } from './store';
+
+config({ path: resolve(dirname(fileURLToPath(import.meta.url)), '../../../.env') });
 
 const PORT = Number(process.env.PORT ?? 4000);
 const clock = new SimClock(process.env.SIM_START_TIME ?? '08:30', Number(process.env.SIM_TIME_SCALE ?? 60));

@@ -1,10 +1,14 @@
-import 'dotenv/config';
+import { config } from 'dotenv';
+import { fileURLToPath } from 'node:url';
+import { dirname, resolve } from 'node:path';
 import { Client, Events, GatewayIntentBits } from 'discord.js';
 import { io } from 'socket.io-client';
 import type { Alert } from '@office/shared';
 import { handleRoom, handleStatus, handleUsage } from './commands';
 import { humanize } from './humanize';
 import { buildAlertTemplate } from './templates';
+
+config({ path: resolve(dirname(fileURLToPath(import.meta.url)), '../../../.env') });
 
 const BACKEND_URL = process.env.BACKEND_URL ?? 'http://localhost:4000';
 const ALERT_CHANNEL_ID = process.env.DISCORD_ALERT_CHANNEL_ID;

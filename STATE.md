@@ -1,11 +1,14 @@
 # State
-Last updated: 2026-07-04T08:00:00+06:00
-Hours remaining at last update: ~10 (deadline 18:00 Asia/Dhaka today)
+Last updated: 2026-07-04T14:18:00+06:00
+Hours remaining at last update: ~3.7 (deadline 18:00 Asia/Dhaka today)
 
 ## Current phase
-COMPLETE (build side). Everything in Section 5's phase plan is done, committed,
-and pushed. What remains is entirely the three human checkpoints below — none
-of them block the build itself, and the repo is judge-ready as-is right now.
+COMPLETE (build side) — and the Discord bot is now fully live with real
+credentials. Everything in Section 5's phase plan is done, committed, and
+pushed. Human completed checkpoint 1 (Discord token) live in this session;
+doing so surfaced and let us fix a real bug (see Known issues). Two human
+checkpoints remain (Wokwi import click-through, demo video) — neither blocks
+the build, and the repo is judge-ready as-is right now.
 
 ## Done
 - Phase 0: public repo (github.com/arifshekhk8/office-iot-dashboard), planning
@@ -49,31 +52,43 @@ of them block the build itself, and the repo is judge-ready as-is right now.
   around the same demo-scenario endpoints.
 - Full monorepo typechecks clean (`npm run typecheck`) at every phase.
 - All 9 commits pushed; `git log` is the durable backup, not this file.
-- Backend + dashboard are currently running live (started fresh during
-  Phase 6) at localhost:4000 / localhost:5173 if you want to look right now.
+- Backend + dashboard + bot are all currently running live at localhost:4000 /
+  localhost:5173, and the bot is logged into Discord for real (real token,
+  real alert channel configured) — confirmed via its own startup log
+  (`[bot] logged in as ...`, `[bot] alert feed connected to ...`).
 
 ## In progress
 - Nothing — clean stopping point, all build work complete.
 
 ## Next up
-Nothing build-related. Only the three human checkpoints below remain.
+Nothing build-related. Only the two human checkpoints below remain.
 
 ## Blocked / needs human
-1. **Discord bot token + Anthropic API key** (see README's "Discord bot
-   credentials" section for the exact 3 steps). Bot code is complete,
-   typechecked, and functionally verified against the backend, but cannot
-   connect to a real Discord server or call the real LLM without these.
-   Everything works without the Anthropic key too (template fallback) —
-   only the Discord token is actually required for the bot to run at all.
-2. **Wokwi import confirmation** — `docs/HARDWARE.md` has 3-step judge
+1. **Wokwi import confirmation** — `docs/HARDWARE.md` has 3-step judge
    instructions (open wokwi.com -> New Project -> ESP32 -> paste
    diagram.json + sketch.ino -> Play). No browser-automation tool available
    for this from here; someone needs to actually click through it once to
    confirm it renders as expected.
-3. **Demo video recording** — `docs/DEMO_SCRIPT.md` is written and ready;
+2. **Demo video recording** — `docs/DEMO_SCRIPT.md` is written and ready;
    someone needs to actually record following it (any screen recorder,
    <=3 min per the rubric).
 
+(Discord bot token checkpoint is DONE — human obtained a real token, enabled
+Message Content Intent, invited the bot, and set an alert channel ID, all in
+this session. ANTHROPIC_API_KEY is still optional/unset; bot correctly runs
+on the deterministic template fallback without it.)
+
 ## Known issues
-- None. `docs/screenshots/` and both `docs/diagrams/system-diagram.{svg,png}`
+- None currently open. Previously: a real bug was found and fixed this
+  session — `apps/backend/src/index.ts` and `apps/bot/src/index.ts` both
+  loaded `.env` via bare `import 'dotenv/config'`, which resolves relative to
+  `process.cwd()`. Since `npm run dev --workspace <app>` sets cwd to that
+  app's own directory (confirmed with `npm exec --workspace apps/bot -c
+  'pwd'`), the repo-root `.env` was never actually being read by either app.
+  Masked for the backend because its env vars all have defaults identical to
+  `.env.example`; surfaced the moment a real `DISCORD_BOT_TOKEN` (no sensible
+  default) was added. Fixed both to load `dotenv` with an explicit path
+  resolved from `import.meta.url`. Verified live: bot now logs in
+  successfully. See PLAN.md decisions log (2026-07-04 14:33) for full detail.
+- `docs/screenshots/` and both `docs/diagrams/system-diagram.{svg,png}`
   reflect the actual current dashboard/architecture, not an earlier draft.
