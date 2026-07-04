@@ -39,3 +39,8 @@ export function buildUsageTemplate(snapshot: Snapshot): string {
 export function buildAlertTemplate(alert: Alert): string {
   return `Alert: ${alert.message}`;
 }
+
+export function buildAlertBatchTemplate(alerts: Alert[]): string {
+  const lines = alerts.map((a) => `• ${a.message}`);
+  return `${alerts.length} new alerts:\n${lines.join('\n')}`;
+}
