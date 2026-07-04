@@ -1,0 +1,20 @@
+# office-iot-dashboard — Wokwi project config (VS Code extension / wokwi-cli)
+# Format reference: https://docs.wokwi.com/vscode/project-config
+#
+# The Wokwi VS Code extension simulates a pre-built firmware binary, so build
+# the sketch once with arduino-cli (with the esp32 core installed):
+#
+#   cd hardware
+#   mkdir -p .build/sketch && cp sketch.ino .build/sketch/sketch.ino
+#   arduino-cli compile --fqbn esp32:esp32:esp32 --output-dir build .build/sketch
+#
+# then run "Wokwi: Start Simulator" (F1) in VS Code with this folder open.
+#
+# No local toolchain? Use the zero-setup path in docs/HARDWARE.md instead:
+# paste diagram.json and sketch.ino straight into a new project on wokwi.com,
+# which compiles the sketch for you.
+
+[wokwi]
+version = 1
+firmware = 'build/sketch.ino.bin'
+elf = 'build/sketch.ino.elf'

@@ -1,0 +1,289 @@
+{
+  "version": 1,
+  "author": "office-iot-dashboard",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-text",
+      "id": "title",
+      "top": -260,
+      "left": -150,
+      "attrs": { "text": "office-iot-dashboard — Work Room 1 hardware node\nESP32 reads 5 wall switches, drives 5 relay channels (2 fans + 3 lights)\nLEDs stand in for 220V AC loads; potentiometer stands in for ACS712 current tap" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "label_pot",
+      "top": -200,
+      "left": 170,
+      "attrs": { "text": "ACS712 stand-in\n(room current tap -> GPIO34/ADC)" }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot1",
+      "top": -150,
+      "left": 220,
+      "attrs": { "value": "512" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "label_switches",
+      "top": -20,
+      "left": -380,
+      "attrs": { "text": "Wall switches (slide RIGHT = ON)\nactive-low, internal pull-ups" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "label_relays",
+      "top": -20,
+      "left": 300,
+      "attrs": { "text": "5-channel relay board\n(coil side: 5V / GPIO)" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "label_loads",
+      "top": -20,
+      "left": 590,
+      "attrs": { "text": "Loads — stand-ins for\n220V AC fans and lights" }
+    },
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 100,
+      "left": -80,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-text",
+      "id": "name_sw1",
+      "top": 75,
+      "left": -430,
+      "attrs": { "text": "fan-1" }
+    },
+    {
+      "type": "wokwi-slide-switch",
+      "id": "sw_fan1",
+      "top": 60,
+      "left": -340,
+      "attrs": { "bounce": "0" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "name_sw2",
+      "top": 185,
+      "left": -430,
+      "attrs": { "text": "fan-2" }
+    },
+    {
+      "type": "wokwi-slide-switch",
+      "id": "sw_fan2",
+      "top": 170,
+      "left": -340,
+      "attrs": { "bounce": "0" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "name_sw3",
+      "top": 295,
+      "left": -430,
+      "attrs": { "text": "light-1" }
+    },
+    {
+      "type": "wokwi-slide-switch",
+      "id": "sw_light1",
+      "top": 280,
+      "left": -340,
+      "attrs": { "bounce": "0" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "name_sw4",
+      "top": 405,
+      "left": -430,
+      "attrs": { "text": "light-2" }
+    },
+    {
+      "type": "wokwi-slide-switch",
+      "id": "sw_light2",
+      "top": 390,
+      "left": -340,
+      "attrs": { "bounce": "0" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "name_sw5",
+      "top": 515,
+      "left": -430,
+      "attrs": { "text": "light-3" }
+    },
+    {
+      "type": "wokwi-slide-switch",
+      "id": "sw_light3",
+      "top": 500,
+      "left": -340,
+      "attrs": { "bounce": "0" }
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relay_fan1",
+      "top": 40,
+      "left": 300,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relay_fan2",
+      "top": 150,
+      "left": 300,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relay_light1",
+      "top": 260,
+      "left": 300,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relay_light2",
+      "top": 370,
+      "left": 300,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relay_light3",
+      "top": 480,
+      "left": 300,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_fan1",
+      "top": 75,
+      "left": 500,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_fan2",
+      "top": 185,
+      "left": 500,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_light1",
+      "top": 295,
+      "left": 500,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_light2",
+      "top": 405,
+      "left": 500,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_light3",
+      "top": 515,
+      "left": 500,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_fan1",
+      "top": 50,
+      "left": 640,
+      "attrs": { "color": "blue", "label": "work1-fan-1 (60 W)" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_fan2",
+      "top": 160,
+      "left": 640,
+      "attrs": { "color": "blue", "label": "work1-fan-2 (60 W)" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_light1",
+      "top": 270,
+      "left": 640,
+      "attrs": { "color": "yellow", "label": "work1-light-1 (15 W)" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_light2",
+      "top": 380,
+      "left": 640,
+      "attrs": { "color": "yellow", "label": "work1-light-2 (15 W)" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_light3",
+      "top": 490,
+      "left": 640,
+      "attrs": { "color": "yellow", "label": "work1-light-3 (15 W)" }
+    }
+  ],
+  "connections": [
+    ["esp:16", "relay_fan1:IN", "orange", []],
+    ["esp:17", "relay_fan2:IN", "orange", []],
+    ["esp:18", "relay_light1:IN", "orange", []],
+    ["esp:19", "relay_light2:IN", "orange", []],
+    ["esp:21", "relay_light3:IN", "orange", []],
+
+    ["esp:5V", "relay_fan1:VCC", "red", []],
+    ["relay_fan1:VCC", "relay_fan2:VCC", "red", []],
+    ["relay_fan2:VCC", "relay_light1:VCC", "red", []],
+    ["relay_light1:VCC", "relay_light2:VCC", "red", []],
+    ["relay_light2:VCC", "relay_light3:VCC", "red", []],
+
+    ["esp:GND.1", "relay_fan1:GND", "black", []],
+    ["relay_fan1:GND", "relay_fan2:GND", "black", []],
+    ["relay_fan2:GND", "relay_light1:GND", "black", []],
+    ["relay_light1:GND", "relay_light2:GND", "black", []],
+    ["relay_light2:GND", "relay_light3:GND", "black", []],
+
+    ["esp:3V3", "relay_fan1:COM", "gold", []],
+    ["relay_fan1:COM", "relay_fan2:COM", "gold", []],
+    ["relay_fan2:COM", "relay_light1:COM", "gold", []],
+    ["relay_light1:COM", "relay_light2:COM", "gold", []],
+    ["relay_light2:COM", "relay_light3:COM", "gold", []],
+
+    ["relay_fan1:NO", "r_fan1:1", "yellow", []],
+    ["r_fan1:2", "led_fan1:A", "yellow", []],
+    ["relay_fan2:NO", "r_fan2:1", "yellow", []],
+    ["r_fan2:2", "led_fan2:A", "yellow", []],
+    ["relay_light1:NO", "r_light1:1", "yellow", []],
+    ["r_light1:2", "led_light1:A", "yellow", []],
+    ["relay_light2:NO", "r_light2:1", "yellow", []],
+    ["r_light2:2", "led_light2:A", "yellow", []],
+    ["relay_light3:NO", "r_light3:1", "yellow", []],
+    ["r_light3:2", "led_light3:A", "yellow", []],
+
+    ["esp:GND.2", "led_fan1:C", "black", []],
+    ["led_fan1:C", "led_fan2:C", "black", []],
+    ["led_fan2:C", "led_light1:C", "black", []],
+    ["led_light1:C", "led_light2:C", "black", []],
+    ["led_light2:C", "led_light3:C", "black", []],
+
+    ["sw_fan1:2", "esp:25", "green", []],
+    ["sw_fan2:2", "esp:26", "green", []],
+    ["sw_light1:2", "esp:27", "green", []],
+    ["sw_light2:2", "esp:32", "green", []],
+    ["sw_light3:2", "esp:33", "green", []],
+
+    ["esp:GND.3", "sw_fan1:3", "black", []],
+    ["sw_fan1:3", "sw_fan2:3", "black", []],
+    ["sw_fan2:3", "sw_light1:3", "black", []],
+    ["sw_light1:3", "sw_light2:3", "black", []],
+    ["sw_light2:3", "sw_light3:3", "black", []],
+
+    ["pot1:SIG", "esp:34", "violet", []],
+    ["pot1:VCC", "esp:3V3", "red", []],
+    ["pot1:GND", "esp:GND.3", "black", []]
+  ]
+}
