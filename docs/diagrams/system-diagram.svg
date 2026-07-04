@@ -1,0 +1,239 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1780 970" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="arrow-slate" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#059669"/>
+    </marker>
+    <marker id="arrow-dash" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-violet" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8b5cf6"/>
+    </marker>
+    <marker id="arrow-indigo" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6366f1"/>
+    </marker>
+    <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+
+  <!-- background: explicit white so the diagram reads correctly regardless of GitHub's page theme -->
+  <rect x="0" y="0" width="1780" height="970" fill="#ffffff"/>
+
+  <!-- title block -->
+  <text x="40" y="44" font-size="27" font-weight="700" fill="#1e293b">Office IoT Dashboard — System Architecture</text>
+  <text x="40" y="68" font-size="14" fill="#64748b">One backend is the single source of truth — the web dashboard and Discord bot are both thin, read-only clients of it.</text>
+  <line x1="40" y1="84" x2="1740" y2="84" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- ================= COLUMN 1 — SIMULATED DEVICE LAYER ================= -->
+  <g filter="url(#soft-shadow)">
+    <rect x="40" y="104" width="320" height="716" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+  </g>
+  <text x="200" y="132" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1.5" fill="#475569">SIMULATED DEVICE LAYER</text>
+  <text x="200" y="150" text-anchor="middle" font-size="11.5" fill="#94a3b8">15 devices · 3 rooms · in-memory state</text>
+
+  <!-- Room boxes: shared structure, 3 instances -->
+  <!-- Drawing Room -->
+  <g>
+    <rect x="64" y="168" width="272" height="168" rx="10" fill="#ffffff" stroke="#c7d2fe" stroke-width="1.2"/>
+    <text x="200" y="198" text-anchor="middle" font-size="15" font-weight="700" fill="#4338ca">Drawing Room</text>
+    <text x="200" y="218" text-anchor="middle" font-size="11.5" fill="#6366f1">2 fans + 3 lights (waiting area)</text>
+    <line x1="84" y1="232" x2="316" y2="232" stroke="#e0e7ff"/>
+    <!-- device pills: Fan1, Fan2, Light1, Light2, Light3 -->
+    <g font-size="9.5" font-weight="600" text-anchor="middle">
+      <rect x="84" y="258" width="43" height="22" rx="6" fill="#e0e7ff" stroke="#a5b4fc"/><text x="105.5" y="273" fill="#4338ca">Fan 1</text>
+      <rect x="131" y="258" width="43" height="22" rx="6" fill="#e0e7ff" stroke="#a5b4fc"/><text x="152.5" y="273" fill="#4338ca">Fan 2</text>
+      <rect x="178" y="258" width="43" height="22" rx="6" fill="#fef3c7" stroke="#fcd34d"/><text x="199.5" y="273" fill="#92400e">Light 1</text>
+      <rect x="225" y="258" width="43" height="22" rx="6" fill="#fef3c7" stroke="#fcd34d"/><text x="246.5" y="273" fill="#92400e">Light 2</text>
+      <rect x="272" y="258" width="43" height="22" rx="6" fill="#fef3c7" stroke="#fcd34d"/><text x="293.5" y="273" fill="#92400e">Light 3</text>
+    </g>
+    <text x="200" y="314" text-anchor="middle" font-size="10.5" fill="#818cf8" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">id: drawing-*</text>
+  </g>
+
+  <!-- Work Room 1 -->
+  <g>
+    <rect x="64" y="352" width="272" height="168" rx="10" fill="#ffffff" stroke="#c7d2fe" stroke-width="1.2"/>
+    <text x="200" y="382" text-anchor="middle" font-size="15" font-weight="700" fill="#4338ca">Work Room 1</text>
+    <text x="200" y="402" text-anchor="middle" font-size="11.5" fill="#6366f1">2 fans + 3 lights</text>
+    <line x1="84" y1="416" x2="316" y2="416" stroke="#e0e7ff"/>
+    <g font-size="9.5" font-weight="600" text-anchor="middle">
+      <rect x="84" y="442" width="43" height="22" rx="6" fill="#e0e7ff" stroke="#a5b4fc"/><text x="105.5" y="457" fill="#4338ca">Fan 1</text>
+      <rect x="131" y="442" width="43" height="22" rx="6" fill="#e0e7ff" stroke="#a5b4fc"/><text x="152.5" y="457" fill="#4338ca">Fan 2</text>
+      <rect x="178" y="442" width="43" height="22" rx="6" fill="#fef3c7" stroke="#fcd34d"/><text x="199.5" y="457" fill="#92400e">Light 1</text>
+      <rect x="225" y="442" width="43" height="22" rx="6" fill="#fef3c7" stroke="#fcd34d"/><text x="246.5" y="457" fill="#92400e">Light 2</text>
+      <rect x="272" y="442" width="43" height="22" rx="6" fill="#fef3c7" stroke="#fcd34d"/><text x="293.5" y="457" fill="#92400e">Light 3</text>
+    </g>
+    <text x="200" y="498" text-anchor="middle" font-size="10.5" fill="#818cf8" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">id: work1-*</text>
+  </g>
+
+  <!-- Work Room 2 -->
+  <g>
+    <rect x="64" y="536" width="272" height="168" rx="10" fill="#ffffff" stroke="#c7d2fe" stroke-width="1.2"/>
+    <text x="200" y="566" text-anchor="middle" font-size="15" font-weight="700" fill="#4338ca">Work Room 2</text>
+    <text x="200" y="586" text-anchor="middle" font-size="11.5" fill="#6366f1">2 fans + 3 lights</text>
+    <line x1="84" y1="600" x2="316" y2="600" stroke="#e0e7ff"/>
+    <g font-size="9.5" font-weight="600" text-anchor="middle">
+      <rect x="84" y="626" width="43" height="22" rx="6" fill="#e0e7ff" stroke="#a5b4fc"/><text x="105.5" y="641" fill="#4338ca">Fan 1</text>
+      <rect x="131" y="626" width="43" height="22" rx="6" fill="#e0e7ff" stroke="#a5b4fc"/><text x="152.5" y="641" fill="#4338ca">Fan 2</text>
+      <rect x="178" y="626" width="43" height="22" rx="6" fill="#fef3c7" stroke="#fcd34d"/><text x="199.5" y="641" fill="#92400e">Light 1</text>
+      <rect x="225" y="626" width="43" height="22" rx="6" fill="#fef3c7" stroke="#fcd34d"/><text x="246.5" y="641" fill="#92400e">Light 2</text>
+      <rect x="272" y="626" width="43" height="22" rx="6" fill="#fef3c7" stroke="#fcd34d"/><text x="293.5" y="641" fill="#92400e">Light 3</text>
+    </g>
+    <text x="200" y="682" text-anchor="middle" font-size="10.5" fill="#818cf8" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">id: work2-*</text>
+  </g>
+
+  <!-- sim clock note -->
+  <g>
+    <rect x="64" y="722" width="272" height="82" rx="10" fill="#eef2ff" stroke="#a5b4fc" stroke-width="1.2"/>
+    <text x="200" y="748" text-anchor="middle" font-size="11" font-weight="700" letter-spacing="1" fill="#4338ca">SIM CLOCK</text>
+    <text x="200" y="767" text-anchor="middle" font-size="11" fill="#4338ca">60× real time · 5s tick</text>
+    <text x="200" y="785" text-anchor="middle" font-size="9.8" fill="#6366f1">office-hours curve + forgot-to-turn-off scenarios</text>
+  </g>
+
+  <!-- ================= COLUMN 2 — BACKEND ================= -->
+  <g filter="url(#soft-shadow)">
+    <rect x="470" y="104" width="380" height="480" rx="14" fill="#1e293b" stroke="#0f172a" stroke-width="1.5"/>
+  </g>
+  <text x="660" y="134" text-anchor="middle" font-size="13.5" font-weight="700" letter-spacing="1.5" fill="#f8fafc">BACKEND — SINGLE SOURCE OF TRUTH</text>
+  <text x="660" y="153" text-anchor="middle" font-size="11.5" fill="#94a3b8" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">Node.js · Express · Socket.IO — port 4000</text>
+
+  <!-- sub-blocks -->
+  <g>
+    <rect x="490" y="172" width="340" height="72" rx="8" fill="#334155" stroke="#475569"/>
+    <text x="660" y="200" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f1f5f9">In-Memory Device Store</text>
+    <text x="660" y="220" text-anchor="middle" font-size="10.8" fill="#94a3b8">status · watts · lastChanged (15 devices)</text>
+  </g>
+  <g>
+    <rect x="490" y="252" width="340" height="72" rx="8" fill="#334155" stroke="#475569"/>
+    <text x="660" y="280" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f1f5f9">Alert Engine</text>
+    <text x="660" y="300" text-anchor="middle" font-size="10.8" fill="#94a3b8">after-hours ON  ·  room all-on &gt; 2h</text>
+  </g>
+  <g>
+    <rect x="490" y="332" width="340" height="72" rx="8" fill="#334155" stroke="#475569"/>
+    <text x="660" y="360" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f1f5f9">Energy Accumulator</text>
+    <text x="660" y="380" text-anchor="middle" font-size="10.8" fill="#94a3b8">integrates watts over time → kWh today</text>
+  </g>
+  <g>
+    <rect x="490" y="412" width="340" height="72" rx="8" fill="#334155" stroke="#475569"/>
+    <text x="660" y="440" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f1f5f9">REST API</text>
+    <text x="660" y="460" text-anchor="middle" font-size="10.6" fill="#94a3b8" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">/api/summary · /devices · /toggle · /demo</text>
+  </g>
+  <g>
+    <rect x="490" y="492" width="340" height="72" rx="8" fill="#334155" stroke="#475569"/>
+    <text x="660" y="520" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f1f5f9">Socket.IO Hub</text>
+    <text x="660" y="540" text-anchor="middle" font-size="10.6" fill="#94a3b8" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">snapshot · alert:new · alert:cleared</text>
+  </g>
+
+  <!-- shared-rules callout -->
+  <g filter="url(#soft-shadow)">
+    <rect x="470" y="602" width="380" height="54" rx="10" fill="#fffbeb" stroke="#fbbf24" stroke-width="1.3"/>
+  </g>
+  <text x="660" y="624" text-anchor="middle" font-size="11.5" font-weight="700" fill="#92400e">NOTE — alert rules live once, in @office/shared</text>
+  <text x="660" y="642" text-anchor="middle" font-size="10.6" fill="#b45309">evaluated ONLY by the backend; dashboard &amp; bot just render its output</text>
+
+  <!-- ================= COLUMN 3 — DASHBOARD / BOT / ANTHROPIC ================= -->
+  <g filter="url(#soft-shadow)">
+    <rect x="1010" y="104" width="340" height="230" rx="12" fill="#ffffff" stroke="#10b981" stroke-width="1.6"/>
+  </g>
+  <text x="1180" y="132" text-anchor="middle" font-size="14.5" font-weight="700" fill="#047857">WEB DASHBOARD</text>
+  <text x="1180" y="150" text-anchor="middle" font-size="11" fill="#64748b" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">React + Vite — port 5173</text>
+  <line x1="1030" y1="162" x2="1330" y2="162" stroke="#d1fae5"/>
+  <g font-size="11.8" fill="#334155">
+    <text x="1032" y="184">• Live device panel — grouped by room</text>
+    <text x="1032" y="206">• Live power meter — total + per room</text>
+    <text x="1032" y="228">• Active alerts panel — timestamped</text>
+    <text x="1032" y="250">• Animated office map (glow + spin)</text>
+  </g>
+  <text x="1180" y="300" text-anchor="middle" font-size="10.3" fill="#059669">no polling — pure Socket.IO push</text>
+
+  <g filter="url(#soft-shadow)">
+    <rect x="1010" y="400" width="340" height="210" rx="12" fill="#ffffff" stroke="#6366f1" stroke-width="1.6"/>
+  </g>
+  <text x="1180" y="428" text-anchor="middle" font-size="14.5" font-weight="700" fill="#4338ca">DISCORD BOT</text>
+  <text x="1180" y="446" text-anchor="middle" font-size="11" fill="#64748b">discord.js</text>
+  <line x1="1030" y1="458" x2="1330" y2="458" stroke="#e0e7ff"/>
+  <g font-size="11.8" fill="#334155">
+    <text x="1032" y="480" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="11.3">• !status · !room &lt;name&gt; · !usage</text>
+    <text x="1032" y="502">• Replies humanized by LLM</text>
+    <text x="1032" y="520" font-size="10.6" fill="#64748b">(numbers always come from backend)</text>
+    <text x="1032" y="544">• Proactive alert push to a channel</text>
+  </g>
+
+  <g filter="url(#soft-shadow)">
+    <rect x="1050" y="650" width="260" height="60" rx="10" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1.2"/>
+  </g>
+  <text x="1180" y="674" text-anchor="middle" font-size="11.3" font-weight="700" fill="#6d28d9" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">Anthropic API · claude-haiku-4-5</text>
+  <text x="1180" y="692" text-anchor="middle" font-size="10" fill="#7c3aed">phrasing only · template fallback if unavailable</text>
+  <line x1="1180" y1="610" x2="1180" y2="650" stroke="#8b5cf6" stroke-width="2" marker-start="url(#arrow-violet)" marker-end="url(#arrow-violet)"/>
+
+  <!-- ================= COLUMN 4 — USERS ================= -->
+  <g filter="url(#soft-shadow)">
+    <rect x="1480" y="300" width="260" height="140" rx="12" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+  </g>
+  <text x="1610" y="336" text-anchor="middle" font-size="14.5" font-weight="700" fill="#334155">USERS</text>
+  <text x="1610" y="358" text-anchor="middle" font-size="11" fill="#64748b">Boss &amp; employees</text>
+  <text x="1610" y="378" text-anchor="middle" font-size="11" fill="#64748b">browser + Discord app</text>
+  <g stroke="#94a3b8" stroke-width="1.4" fill="none">
+    <circle cx="1572" cy="402" r="7" fill="#cbd5e1"/>
+    <path d="M1558,426 Q1572,408 1586,426" fill="#cbd5e1"/>
+    <circle cx="1650" cy="402" r="7" fill="#cbd5e1"/>
+    <path d="M1636,426 Q1650,408 1664,426" fill="#cbd5e1"/>
+  </g>
+
+  <!-- ================= ARROWS ================= -->
+
+  <!-- 1. Simulator -> Backend store (structural) -->
+  <line x1="360" y1="215" x2="465" y2="215" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow-slate)"/>
+  <rect x="379" y="192" width="72" height="34" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="415" y="205" text-anchor="middle" font-size="9.5" font-weight="600" fill="#334155">device state</text>
+  <text x="415" y="219" text-anchor="middle" font-size="9.5" fill="#64748b">every 5s tick</text>
+
+  <!-- 2. Backend -> Dashboard (PUSH) -->
+  <line x1="854" y1="190" x2="1005" y2="190" stroke="#059669" stroke-width="2.5" marker-end="url(#arrow-emerald)"/>
+  <rect x="860" y="170" width="140" height="36" rx="6" fill="#ffffff" stroke="#a7f3d0"/>
+  <text x="930" y="184" text-anchor="middle" font-size="10" font-weight="700" fill="#047857">Socket.IO snapshot</text>
+  <text x="930" y="198" text-anchor="middle" font-size="9.5" fill="#059669">PUSH — every tick/change</text>
+
+  <!-- 3. Dashboard -> Backend (toggle, on-demand) -->
+  <line x1="1005" y1="262" x2="854" y2="262" stroke="#64748b" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#arrow-dash)"/>
+  <rect x="860" y="244" width="140" height="36" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="930" y="258" text-anchor="middle" font-size="10" font-weight="700" fill="#475569" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">POST /toggle</text>
+  <text x="930" y="272" text-anchor="middle" font-size="9.5" fill="#64748b">user clicks a device</text>
+
+  <!-- 4. Bot -> Backend (on-demand pull) -->
+  <line x1="1005" y1="472" x2="854" y2="472" stroke="#64748b" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#arrow-dash)"/>
+  <rect x="860" y="454" width="140" height="36" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="930" y="468" text-anchor="middle" font-size="10" font-weight="700" fill="#475569" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">GET /summary</text>
+  <text x="930" y="482" text-anchor="middle" font-size="9.5" fill="#64748b">on-demand · per command</text>
+
+  <!-- 5. Backend -> Bot (PUSH alert) -->
+  <line x1="854" y1="542" x2="1005" y2="542" stroke="#059669" stroke-width="2.5" marker-end="url(#arrow-emerald)"/>
+  <rect x="860" y="524" width="140" height="36" rx="6" fill="#ffffff" stroke="#a7f3d0"/>
+  <text x="930" y="538" text-anchor="middle" font-size="10" font-weight="700" fill="#047857">Socket.IO alert:new</text>
+  <text x="930" y="552" text-anchor="middle" font-size="9.5" fill="#059669">PUSH → posts to channel</text>
+
+  <!-- 7. Users <-> Dashboard -->
+  <path d="M1350,220 L1415,220 L1415,338 L1476,338" fill="none" stroke="#6366f1" stroke-width="2" marker-start="url(#arrow-indigo)" marker-end="url(#arrow-indigo)"/>
+  <rect x="1358" y="262" width="114" height="36" rx="6" fill="#ffffff" stroke="#c7d2fe"/>
+  <text x="1415" y="276" text-anchor="middle" font-size="9.5" font-weight="600" fill="#4338ca">opens in browser</text>
+  <text x="1415" y="290" text-anchor="middle" font-size="9.5" fill="#6366f1">views live UI</text>
+
+  <!-- 8. Users <-> Bot -->
+  <path d="M1350,472 L1415,472 L1415,402 L1476,402" fill="none" stroke="#6366f1" stroke-width="2" marker-start="url(#arrow-indigo)" marker-end="url(#arrow-indigo)"/>
+  <rect x="1358" y="418" width="114" height="36" rx="6" fill="#ffffff" stroke="#c7d2fe"/>
+  <text x="1415" y="432" text-anchor="middle" font-size="9.5" font-weight="600" fill="#4338ca">Discord app</text>
+  <text x="1415" y="446" text-anchor="middle" font-size="9.5" fill="#6366f1">runs bot commands</text>
+
+  <!-- ================= LEGEND ================= -->
+  <line x1="40" y1="868" x2="1740" y2="868" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="40" y="898" font-size="12.5" font-weight="700" fill="#475569" letter-spacing="1">LEGEND</text>
+
+  <line x1="110" y1="900" x2="165" y2="900" stroke="#059669" stroke-width="2.5" marker-end="url(#arrow-emerald)"/>
+  <text x="177" y="904" font-size="11.5" fill="#334155">Live push (Socket.IO) — server sends the moment state changes, no polling</text>
+
+  <line x1="110" y1="926" x2="165" y2="926" stroke="#64748b" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#arrow-dash)"/>
+  <text x="177" y="930" font-size="11.5" fill="#334155">On-demand pull/request (REST) — client asks once, gets one answer</text>
+</svg>
