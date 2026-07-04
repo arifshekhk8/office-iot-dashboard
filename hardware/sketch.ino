@@ -1,5 +1,5 @@
 /*
- * office-iot-dashboard — hardware node for Work Room 1 ("work1")
+ * Techathon2026-Straw_Hat — hardware node for Work Room 1 ("work1")
  * ---------------------------------------------------------------
  * ESP32 DevKitC V4. Reads 5 wall switches (active-low, internal pull-ups),
  * drives 5 relay channels (2 fans + 3 lights), samples the room current

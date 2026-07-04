@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1780 966" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="arrow-slate" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+    <marker id="arrow-rose" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#e11d48"/>
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b45309"/>
+    </marker>
+    <marker id="arrow-violet" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/>
+    </marker>
+    <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+<rect x="0" y="0" width="1780" height="966" fill="#ffffff"/>
+<text x="40" y="44" font-size="27" font-weight="700" fill="#1e293b">Techathon2026-Straw_Hat — Hardware Architecture (Work Room 1 node)</text>
+<text x="40" y="68" font-size="14" fill="#64748b">One ESP32 per room reads wall switches, drives isolated relays, and senses real current — emitting the same JSON the software simulator already produces.</text>
+<line x1="40" y1="84" x2="1740" y2="84" stroke="#e2e8f0" stroke-width="1.5"/>
+<g filter="url(#soft-shadow)"><rect x="40" y="98" width="1700" height="60" rx="10" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1.3"/></g>
+<text x="60" y="121" font-size="12.3" font-weight="700" fill="#6d28d9">CONNECTS TO THE SOFTWARE SYSTEM</text>
+<text x="60" y="142" font-size="11.6" fill="#5b21b6">This node’s WiFi uplink POSTs the same <tspan font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">{room, devices[], roomWatts}</tspan> JSON shape the software simulator emits, to the identical backend ingestion route (see system-diagram.svg) — no backend changes needed to accept a real room.</text>
+<g filter="url(#soft-shadow)"><rect x="40" y="182" width="300" height="592" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/></g>
+<text x="190.0" y="206" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1.2" fill="#475569">WALL SWITCHES</text>
+<text x="190.0" y="224" text-anchor="middle" font-size="10.8" fill="#94a3b8">low-voltage inputs · debounced 3×25ms</text>
+<g filter="url(#soft-shadow)"><rect x="56" y="238" width="268" height="92" rx="9" fill="#ffffff" stroke="#c7d2fe" stroke-width="1.2"/></g>
+<rect x="70" y="252" width="72" height="22" rx="6" fill="#e0e7ff" stroke="#a5b4fc"/>
+<text x="106" y="267" text-anchor="middle" font-size="10.2" font-weight="700" fill="#4338ca" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">GPIO 25</text>
+<text x="80" y="291" font-size="12.2" font-weight="700" fill="#334155">Switch 1 -> work1-fan-1</text>
+<text x="80" y="309" font-size="10.2" fill="#64748b">60 W ceiling fan · active-low, internal pull-up</text>
+<g filter="url(#soft-shadow)"><rect x="56" y="344" width="268" height="92" rx="9" fill="#ffffff" stroke="#c7d2fe" stroke-width="1.2"/></g>
+<rect x="70" y="358" width="72" height="22" rx="6" fill="#e0e7ff" stroke="#a5b4fc"/>
+<text x="106" y="373" text-anchor="middle" font-size="10.2" font-weight="700" fill="#4338ca" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">GPIO 26</text>
+<text x="80" y="397" font-size="12.2" font-weight="700" fill="#334155">Switch 2 -> work1-fan-2</text>
+<text x="80" y="415" font-size="10.2" fill="#64748b">60 W ceiling fan · active-low, internal pull-up</text>
+<g filter="url(#soft-shadow)"><rect x="56" y="450" width="268" height="92" rx="9" fill="#ffffff" stroke="#c7d2fe" stroke-width="1.2"/></g>
+<rect x="70" y="464" width="72" height="22" rx="6" fill="#e0e7ff" stroke="#a5b4fc"/>
+<text x="106" y="479" text-anchor="middle" font-size="10.2" font-weight="700" fill="#4338ca" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">GPIO 27</text>
+<text x="80" y="503" font-size="12.2" font-weight="700" fill="#334155">Switch 3 -> work1-light-1</text>
+<text x="80" y="521" font-size="10.2" fill="#64748b">15 W ceiling light · active-low, internal pull-up</text>
+<g filter="url(#soft-shadow)"><rect x="56" y="556" width="268" height="92" rx="9" fill="#ffffff" stroke="#c7d2fe" stroke-width="1.2"/></g>
+<rect x="70" y="570" width="72" height="22" rx="6" fill="#e0e7ff" stroke="#a5b4fc"/>
+<text x="106" y="585" text-anchor="middle" font-size="10.2" font-weight="700" fill="#4338ca" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">GPIO 32</text>
+<text x="80" y="609" font-size="12.2" font-weight="700" fill="#334155">Switch 4 -> work1-light-2</text>
+<text x="80" y="627" font-size="10.2" fill="#64748b">15 W ceiling light · active-low, internal pull-up</text>
+<g filter="url(#soft-shadow)"><rect x="56" y="662" width="268" height="92" rx="9" fill="#ffffff" stroke="#c7d2fe" stroke-width="1.2"/></g>
+<rect x="70" y="676" width="72" height="22" rx="6" fill="#e0e7ff" stroke="#a5b4fc"/>
+<text x="106" y="691" text-anchor="middle" font-size="10.2" font-weight="700" fill="#4338ca" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">GPIO 33</text>
+<text x="80" y="715" font-size="12.2" font-weight="700" fill="#334155">Switch 5 -> work1-light-3</text>
+<text x="80" y="733" font-size="10.2" fill="#64748b">15 W ceiling light · active-low, internal pull-up</text>
+<g filter="url(#soft-shadow)"><rect x="460" y="182" width="380" height="586" rx="14" fill="#1e293b" stroke="#0f172a" stroke-width="1.5"/></g>
+<text x="650.0" y="206" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1.2" fill="#f8fafc">ESP32 DEVKITC V4 — ROOM CONTROLLER</text>
+<text x="650.0" y="224" text-anchor="middle" font-size="10.8" fill="#94a3b8">reads · drives · senses · reports</text>
+<rect x="480" y="238" width="340" height="76" rx="8" fill="#334155" stroke="#475569"/>
+<text x="650.0" y="268" text-anchor="middle" font-size="13" font-weight="700" fill="#f1f5f9">Digital Inputs</text>
+<text x="650.0" y="290" text-anchor="middle" font-size="10.2" fill="#94a3b8" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">GPIO 25,26,27,32,33 — 5 wall switches, active-low</text>
+<rect x="480" y="328" width="340" height="76" rx="8" fill="#334155" stroke="#475569"/>
+<text x="650.0" y="358" text-anchor="middle" font-size="13" font-weight="700" fill="#f1f5f9">Digital Outputs</text>
+<text x="650.0" y="380" text-anchor="middle" font-size="10.2" fill="#94a3b8" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">GPIO 16,17,18,19,21 — 5 relay coil drivers</text>
+<rect x="480" y="418" width="340" height="76" rx="8" fill="#334155" stroke="#475569"/>
+<text x="650.0" y="448" text-anchor="middle" font-size="13" font-weight="700" fill="#f1f5f9">Analog Input (ADC1_CH6)</text>
+<text x="650.0" y="470" text-anchor="middle" font-size="10.2" fill="#94a3b8" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">GPIO 34 — current-sense tap, no pull-up</text>
+<rect x="480" y="508" width="340" height="76" rx="8" fill="#334155" stroke="#475569"/>
+<text x="650.0" y="538" text-anchor="middle" font-size="13" font-weight="700" fill="#f1f5f9">Firmware Loop</text>
+<text x="650.0" y="560" text-anchor="middle" font-size="10.2" fill="#94a3b8" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">debounce -&gt; relay update -&gt; emit JSON every 2s + on change</text>
+<rect x="480" y="598" width="340" height="76" rx="8" fill="#334155" stroke="#475569"/>
+<text x="650.0" y="628" text-anchor="middle" font-size="13" font-weight="700" fill="#f1f5f9">WiFi (station mode)</text>
+<text x="650.0" y="650" text-anchor="middle" font-size="10.2" fill="#94a3b8" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">POST device JSON -&gt; backend :4000/api/devices</text>
+<rect x="480" y="688" width="340" height="60" rx="8" fill="#0f172a" stroke="#334155"/>
+<text x="650.0" y="712" text-anchor="middle" font-size="11.2" font-weight="700" fill="#e2e8f0">Board power: 5V (VIN) · 3V3 (logic) · GND common</text>
+<text x="650.0" y="730" text-anchor="middle" font-size="9.8" fill="#94a3b8">5V rail also feeds the relay board coil supply</text>
+<g filter="url(#soft-shadow)"><rect x="980" y="182" width="380" height="616" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/></g>
+<text x="1170.0" y="206" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1.2" fill="#475569">RELAY BOARD — ISOLATION BARRIER</text>
+<text x="1170.0" y="224" text-anchor="middle" font-size="10.8" fill="#94a3b8">coil side (logic) &lt;-&gt; contact side (mains) — no shared conductor</text>
+<line x1="1170.0" y1="356" x2="1170.0" y2="784" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5"/>
+<rect x="1000" y="238" width="340" height="44" rx="8" fill="#fff1f2" stroke="#fecdd3" stroke-width="1.2"/>
+<text x="1170.0" y="256" text-anchor="middle" font-size="11.3" font-weight="700" fill="#be123c">220V AC MAINS SUPPLY</text>
+<text x="1170.0" y="273" text-anchor="middle" font-size="9.8" fill="#e11d48">enters contact-side rail only — never touches logic</text>
+<g filter="url(#soft-shadow)"><rect x="1060" y="292" width="220" height="62" rx="9" fill="#fffbeb" stroke="#fbbf24" stroke-width="1.3"/></g>
+<text x="1170.0" y="314" text-anchor="middle" font-size="11.5" font-weight="700" fill="#92400e">ACS712-20A CURRENT SENSE</text>
+<text x="1170.0" y="332" text-anchor="middle" font-size="9.8" fill="#b45309">in series, upstream of relay bank · 2.5V ±100mV/A</text>
+<text x="1170.0" y="347" text-anchor="middle" font-size="9.8" fill="#b45309">measures total room current draw</text>
+<rect x="1000" y="368" width="170.0" height="74" rx="8" fill="#eef2ff" stroke="#c7d2fe" stroke-width="1.1"/>
+<rect x="1170.0" y="368" width="170.0" height="74" rx="8" fill="#fff1f2" stroke="#fecdd3" stroke-width="1.1"/>
+<text x="1020" y="390" font-size="11.6" font-weight="700" fill="#4338ca">Relay Ch 1</text>
+<text x="1020" y="408" font-size="9.8" fill="#4f46e5" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">coil &lt;- GPIO 16</text>
+<text x="1020" y="424" font-size="9.6" fill="#6366f1">5V coil supply</text>
+<text x="1190.0" y="390" font-size="11.6" font-weight="700" fill="#be123c">COM -> NO</text>
+<text x="1190.0" y="408" font-size="10.4" fill="#e11d48">work1-fan-1</text>
+<text x="1190.0" y="424" font-size="9.6" fill="#fb7185">60 W fan · 220V AC switched</text>
+<rect x="1000" y="452" width="170.0" height="74" rx="8" fill="#eef2ff" stroke="#c7d2fe" stroke-width="1.1"/>
+<rect x="1170.0" y="452" width="170.0" height="74" rx="8" fill="#fff1f2" stroke="#fecdd3" stroke-width="1.1"/>
+<text x="1020" y="474" font-size="11.6" font-weight="700" fill="#4338ca">Relay Ch 2</text>
+<text x="1020" y="492" font-size="9.8" fill="#4f46e5" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">coil &lt;- GPIO 17</text>
+<text x="1020" y="508" font-size="9.6" fill="#6366f1">5V coil supply</text>
+<text x="1190.0" y="474" font-size="11.6" font-weight="700" fill="#be123c">COM -> NO</text>
+<text x="1190.0" y="492" font-size="10.4" fill="#e11d48">work1-fan-2</text>
+<text x="1190.0" y="508" font-size="9.6" fill="#fb7185">60 W fan · 220V AC switched</text>
+<rect x="1000" y="536" width="170.0" height="74" rx="8" fill="#eef2ff" stroke="#c7d2fe" stroke-width="1.1"/>
+<rect x="1170.0" y="536" width="170.0" height="74" rx="8" fill="#fff1f2" stroke="#fecdd3" stroke-width="1.1"/>
+<text x="1020" y="558" font-size="11.6" font-weight="700" fill="#4338ca">Relay Ch 3</text>
+<text x="1020" y="576" font-size="9.8" fill="#4f46e5" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">coil &lt;- GPIO 18</text>
+<text x="1020" y="592" font-size="9.6" fill="#6366f1">5V coil supply</text>
+<text x="1190.0" y="558" font-size="11.6" font-weight="700" fill="#be123c">COM -> NO</text>
+<text x="1190.0" y="576" font-size="10.4" fill="#e11d48">work1-light-1</text>
+<text x="1190.0" y="592" font-size="9.6" fill="#fb7185">15 W light · 220V AC switched</text>
+<rect x="1000" y="620" width="170.0" height="74" rx="8" fill="#eef2ff" stroke="#c7d2fe" stroke-width="1.1"/>
+<rect x="1170.0" y="620" width="170.0" height="74" rx="8" fill="#fff1f2" stroke="#fecdd3" stroke-width="1.1"/>
+<text x="1020" y="642" font-size="11.6" font-weight="700" fill="#4338ca">Relay Ch 4</text>
+<text x="1020" y="660" font-size="9.8" fill="#4f46e5" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">coil &lt;- GPIO 19</text>
+<text x="1020" y="676" font-size="9.6" fill="#6366f1">5V coil supply</text>
+<text x="1190.0" y="642" font-size="11.6" font-weight="700" fill="#be123c">COM -> NO</text>
+<text x="1190.0" y="660" font-size="10.4" fill="#e11d48">work1-light-2</text>
+<text x="1190.0" y="676" font-size="9.6" fill="#fb7185">15 W light · 220V AC switched</text>
+<rect x="1000" y="704" width="170.0" height="74" rx="8" fill="#eef2ff" stroke="#c7d2fe" stroke-width="1.1"/>
+<rect x="1170.0" y="704" width="170.0" height="74" rx="8" fill="#fff1f2" stroke="#fecdd3" stroke-width="1.1"/>
+<text x="1020" y="726" font-size="11.6" font-weight="700" fill="#4338ca">Relay Ch 5</text>
+<text x="1020" y="744" font-size="9.8" fill="#4f46e5" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">coil &lt;- GPIO 21</text>
+<text x="1020" y="760" font-size="9.6" fill="#6366f1">5V coil supply</text>
+<text x="1190.0" y="726" font-size="11.6" font-weight="700" fill="#be123c">COM -> NO</text>
+<text x="1190.0" y="744" font-size="10.4" fill="#e11d48">work1-light-3</text>
+<text x="1190.0" y="760" font-size="9.6" fill="#fb7185">15 W light · 220V AC switched</text>
+<text x="1170.0" y="794" text-anchor="middle" font-size="9" fill="#94a3b8" letter-spacing="1">&lt;- ISOLATION BARRIER -&gt;</text>
+<g filter="url(#soft-shadow)"><rect x="1460" y="182" width="280" height="486" rx="14" fill="#ffffff" stroke="#e11d48" stroke-width="1.6"/></g>
+<text x="1600.0" y="206" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1.2" fill="#be123c">LOADS — 220V AC</text>
+<text x="1600.0" y="224" text-anchor="middle" font-size="10.8" fill="#fb7185">2 fans + 3 lights, live–load–neutral</text>
+<rect x="1480" y="238" width="240" height="74" rx="8" fill="#e0e7ff" stroke="#a5b4fc" stroke-width="1.2"/>
+<text x="1600.0" y="267" text-anchor="middle" font-size="12.3" font-weight="700" fill="#4338ca" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">work1-fan-1</text>
+<text x="1600.0" y="288" text-anchor="middle" font-size="10.5" fill="#4338ca">Ceiling fan · 60 W</text>
+<rect x="1480" y="322" width="240" height="74" rx="8" fill="#e0e7ff" stroke="#a5b4fc" stroke-width="1.2"/>
+<text x="1600.0" y="351" text-anchor="middle" font-size="12.3" font-weight="700" fill="#4338ca" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">work1-fan-2</text>
+<text x="1600.0" y="372" text-anchor="middle" font-size="10.5" fill="#4338ca">Ceiling fan · 60 W</text>
+<rect x="1480" y="406" width="240" height="74" rx="8" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.2"/>
+<text x="1600.0" y="435" text-anchor="middle" font-size="12.3" font-weight="700" fill="#92400e" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">work1-light-1</text>
+<text x="1600.0" y="456" text-anchor="middle" font-size="10.5" fill="#92400e">Ceiling light · 15 W</text>
+<rect x="1480" y="490" width="240" height="74" rx="8" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.2"/>
+<text x="1600.0" y="519" text-anchor="middle" font-size="12.3" font-weight="700" fill="#92400e" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">work1-light-2</text>
+<text x="1600.0" y="540" text-anchor="middle" font-size="10.5" fill="#92400e">Ceiling light · 15 W</text>
+<rect x="1480" y="574" width="240" height="74" rx="8" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.2"/>
+<text x="1600.0" y="603" text-anchor="middle" font-size="12.3" font-weight="700" fill="#92400e" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">work1-light-3</text>
+<text x="1600.0" y="624" text-anchor="middle" font-size="10.5" fill="#92400e">Ceiling light · 15 W</text>
+<line x1="340" y1="496.0" x2="460" y2="276.0" stroke="#475569" stroke-width="2.2" marker-end="url(#arrow-slate)"/>
+<rect x="354.0" y="362.0" width="92" height="34" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="400.0" y="377.0" text-anchor="middle" font-size="9.3" font-weight="600" fill="#334155">5 switch lines</text>
+<text x="400.0" y="391.0" text-anchor="middle" font-size="9.3" fill="#64748b">low voltage</text>
+<line x1="840" y1="366.0" x2="980" y2="573.0" stroke="#475569" stroke-width="2.2" marker-end="url(#arrow-slate)"/>
+<rect x="858.0" y="445.5" width="104" height="34" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="910.0" y="460.5" text-anchor="middle" font-size="9.3" font-weight="600" fill="#334155">5 coil drives</text>
+<text x="910.0" y="474.5" text-anchor="middle" font-size="9.3" fill="#64748b">GPIO -> relay IN</text>
+<line x1="1360" y1="573.0" x2="1460" y2="443.0" stroke="#e11d48" stroke-width="2.4" marker-end="url(#arrow-rose)"/>
+<rect x="1362.0" y="484.0" width="96" height="34" rx="6" fill="#ffffff" stroke="#fecdd3"/>
+<text x="1410.0" y="499.0" text-anchor="middle" font-size="9.3" font-weight="600" fill="#be123c">220V AC</text>
+<text x="1410.0" y="513.0" text-anchor="middle" font-size="9.3" fill="#e11d48">switched load</text>
+<path d="M1060,323.0 C 910.0,323.0 910.0,456.0 840,456.0" fill="none" stroke="#b45309" stroke-width="2.2" marker-end="url(#arrow-amber)"/>
+<rect x="852.0" y="626.0" width="116" height="34" rx="6" fill="#ffffff" stroke="#fde68a"/>
+<text x="910.0" y="641.0" text-anchor="middle" font-size="9.3" font-weight="600" fill="#92400e">sense -> divider</text>
+<text x="910.0" y="655.0" text-anchor="middle" font-size="9.3" fill="#b45309">5V -> 3.3V -> GPIO34</text>
+<line x1="1170.0" y1="282" x2="1170.0" y2="292" stroke="#e11d48" stroke-width="2" marker-end="url(#arrow-rose)"/>
+<path d="M650.0,636.0 L 650.0,168 " fill="none" stroke="#7c3aed" stroke-width="2.2" stroke-dasharray="7 5" marker-end="url(#arrow-violet)"/>
+<rect x="592.0" y="142" width="116" height="28" rx="6" fill="#ffffff" stroke="#c4b5fd"/>
+<text x="650.0" y="161" text-anchor="middle" font-size="9.6" font-weight="700" fill="#6d28d9">WiFi -> backend</text>
+<line x1="40" y1="838" x2="1740" y2="838" stroke="#e2e8f0" stroke-width="1.5"/>
+<text x="40" y="868" font-size="12.5" font-weight="700" fill="#475569" letter-spacing="1">LEGEND</text>
+<line x1="110" y1="896" x2="165" y2="896" stroke="#475569" stroke-width="2.2" marker-end="url(#arrow-slate)"/>
+<text x="177" y="900" font-size="11.3" fill="#334155">Logic-side wiring (3.3V/5V) — GPIO signals, never touches mains</text>
+<line x1="640" y1="896" x2="695" y2="896" stroke="#e11d48" stroke-width="2.4" marker-end="url(#arrow-rose)"/>
+<text x="707" y="900" font-size="11.3" fill="#334155">Mains-side wiring (220V AC) — isolated by the relay’s contacts</text>
+<line x1="1180" y1="896" x2="1235" y2="896" stroke="#b45309" stroke-width="2.2" marker-end="url(#arrow-amber)"/>
+<text x="1247" y="900" font-size="11.3" fill="#334155">Analog sense feedback (current-sense -> ADC)</text>
+<line x1="110" y1="926" x2="165" y2="926" stroke="#7c3aed" stroke-width="2.2" stroke-dasharray="7 5" marker-end="url(#arrow-violet)"/>
+<text x="177" y="930" font-size="11.3" fill="#334155">WiFi data path — same JSON ingestion route as the software simulator</text>
+<line x1="640" y1="926" x2="695" y2="926" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="707" y="930" font-size="11.3" fill="#334155">Isolation barrier — no shared conductor between coil and contact sides</text>
+</svg>

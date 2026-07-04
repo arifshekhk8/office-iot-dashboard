@@ -22,3 +22,7 @@ npm-debug.log*
 
 # internal dev notes — build plan, state log, original AI brief (not for judges)
 internal/
+
+# demo scripts — personal recording notes, not for judges
+docs/DEMO_SCRIPT.md
+docs/DEMO_SCRIPT_BN.md

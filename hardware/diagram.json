@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "author": "office-iot-dashboard",
+  "author": "Techathon2026-Straw_Hat",
   "editor": "wokwi",
   "parts": [
     {
@@ -8,7 +8,7 @@
       "id": "title",
       "top": -260,
       "left": -150,
-      "attrs": { "text": "office-iot-dashboard — Work Room 1 hardware node\nESP32 reads 5 wall switches, drives 5 relay channels (2 fans + 3 lights)\nLEDs stand in for 220V AC loads; potentiometer stands in for ACS712 current tap" }
+      "attrs": { "text": "Techathon2026-Straw_Hat — Work Room 1 hardware node\nESP32 reads 5 wall switches, drives 5 relay channels (2 fans + 3 lights)\nLEDs stand in for 220V AC loads; potentiometer stands in for ACS712 current tap" }
     },
     {
       "type": "wokwi-text",
